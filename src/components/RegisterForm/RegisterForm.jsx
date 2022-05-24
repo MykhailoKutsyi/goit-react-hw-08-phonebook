@@ -3,7 +3,7 @@ import {
   // useAddContactMutation,
   // useGetContactsQuery,
   useRegisterMutation,
-  register,
+  // register,
 } from '../../redux/services';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -111,7 +111,7 @@ export default function ContactForm() {
         />
       </label>
       <button type="submit" className={s.submitButton}>
-        Add contact
+        Registration
       </button>
     </form>
   );

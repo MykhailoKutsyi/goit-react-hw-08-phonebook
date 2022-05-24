@@ -68,7 +68,7 @@ export default function ContactForm() {
         />
       </label>
       <button type="submit" className={s.submitButton}>
-        Add contact
+        Login
       </button>
     </form>
   );
