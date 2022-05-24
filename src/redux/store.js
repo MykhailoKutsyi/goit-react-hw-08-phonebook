@@ -9,7 +9,6 @@ export const store = configureStore({
     [contactsApi.reducerPath]: contactsApi.reducer,
     filter,
   },
-
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware(),
     // logger,
@@ -17,5 +16,6 @@ export const store = configureStore({
   ],
   devTools: process.env.NODE_ENV === 'development',
 });
+console.log(store);
 
 setupListeners(store.dispatch);
