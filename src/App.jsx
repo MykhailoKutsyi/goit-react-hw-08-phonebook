@@ -4,13 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 import AppBar from './components/AppBar';
 import Container from './components/Container';
 import Loader from './components/Loader';
-import ContactForm from './components/ContactForm';
+// import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
-import Filter from './components/Filter';
+// import Filter from './components/Filter';
 import LoginForm from 'components/LoginForm';
 // import RegisterForm from 'components/RegisterForm';
 const RegisterForm = lazy(() => import('components/RegisterForm'));
 export default function App() {
+  // console.log();
   return (
     <Container>
       <AppBar />
@@ -38,11 +39,9 @@ export default function App() {
             path="contacts"
             element={
               <>
-                <h1>Phonebook</h1>
-                <ContactForm />
                 <h1>Contacts</h1>
-                <Filter />
                 <ContactList />
+                {/* <Filter /> */}
               </>
             }
           />

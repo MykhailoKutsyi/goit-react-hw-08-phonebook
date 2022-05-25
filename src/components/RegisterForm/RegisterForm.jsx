@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   // useAddContactMutation,
   // useGetContactsQuery,
   useRegisterMutation,
   // register,
 } from '../../redux/services';
-
+import { getState } from '../../redux/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import s from './RegisterForm.module.css';
 
@@ -15,6 +17,8 @@ export default function ContactForm() {
   // const [addContact] = useAddContactMutation();
   const [addRegister] = useRegisterMutation();
   // const [addRegister] = useRegister();
+  const state = useSelector(getState);
+  console.log(state);
   // const { data: contacts } = useGetContactsQuery();
   // console.log('addRegister', addRegister);
   // console.log(useRegisterMutation());
@@ -45,6 +49,8 @@ export default function ContactForm() {
       Notify.info(`Registration success, bitch`);
       token = response.data.token;
       console.log('response', token);
+      state.auth.token = token;
+      console.log(state);
       reset();
     } else if (response.error.status === 400) {
       Notify.warning(`Please check entered values, bitch`);

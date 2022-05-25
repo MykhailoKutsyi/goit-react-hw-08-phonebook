@@ -4,10 +4,10 @@ import Loader from 'components/Loader';
 import { FaUserAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './ContactListItem.module.css';
 
-const ContactListItem = ({ createdAt, id, name, phone }) => {
+const ContactListItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const removeContact = () => {
     deleteContact(id);
@@ -20,10 +20,10 @@ const ContactListItem = ({ createdAt, id, name, phone }) => {
           <FaUserAlt size={14} /> {name}
         </p>
         <p className={s.text}>
-          <FaPhoneAlt size={14} /> {phone}
+          <FaPhoneAlt size={14} /> {number}
         </p>
         <p className={s.text}>
-          <FaClock size={14} /> {createdAt}
+          <FaClock size={14} /> {id}
         </p>
       </div>
 
@@ -41,10 +41,10 @@ const ContactListItem = ({ createdAt, id, name, phone }) => {
 };
 
 ContactListItem.propTypes = {
-  createdAt: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  // createdAt: PropTypes.string.isRequired,
+  // id: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
+  // phone: PropTypes.string.isRequired,
 };
 
 export default ContactListItem;
