@@ -8,7 +8,7 @@ import {
 } from '../../redux/services';
 import { getState } from '../../redux/selectors';
 
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import s from './LoginForm.module.css';
 import { useSelector } from 'react-redux';
 
@@ -16,7 +16,7 @@ export default function ContactForm() {
   const [params, setParams] = useState({ email: '', password: '' });
 
   const [addLogin] = useLoginMutation();
-  const state = useSelector(getState);
+  // const state = useSelector(getState);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -25,9 +25,6 @@ export default function ContactForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // contacts.some(contact => contact.name === params.name)
-    //   ? Notify.failure(`Contact ${params.name} already exists`)
-    //   : newContact();
     newContact();
   }
 
