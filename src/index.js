@@ -5,12 +5,12 @@ import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
 import './index.css';
 
-import { store, persistor } from './redux/store';
+import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store} persistor={persistor}>
+    <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

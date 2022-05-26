@@ -42,25 +42,27 @@ export default function ContactForm() {
   //   reset();
 
   // };
-  let token = '';
+  // let token = '';
 
-  async function newContact() {
-    const response = await addLogin(params);
+  // async function newContact() {
+  function newContact() {
+    // const response = await addLogin(params);
+    addLogin(params);
     // const response = await register(params);
-    console.log('response', response);
-    if (response?.data?.token) {
-      console.log('status 201 - ok');
-      Notify.info(`Login success, bitch`);
-      token = response.data.token;
-      console.log('response', token);
-      state.auth.token = token;
-      console.log(state);
-      reset();
-    } else if (response.error.status === 400) {
-      Notify.warning(`Please check entered values, bitch`);
-      console.log('status 400 - Bad Request');
-    } else
-      console.log('status not 201 not 400, but 500  - Server shuting down');
+    // console.log('response', response);
+    // if (response?.data?.token) {
+    // console.log('status 201 - ok');
+    // Notify.info(`Login success, bitch`);
+    // token = response.data.token;
+    // console.log('response', token);
+    // state.auth.token = token;
+    // console.log(state);
+    reset();
+    //   } else if (response.error.status === 400) {
+    //     Notify.warning(`Please check entered values, bitch`);
+    //     console.log('status 400 - Bad Request');
+    //   } else
+    //     console.log('status not 201 not 400, but 500  - Server shuting down');
   }
 
   const reset = () => {

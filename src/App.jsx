@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import AppBar from './components/AppBar';
 import Container from './components/Container';
@@ -10,6 +10,7 @@ import ContactList from './components/ContactList';
 import LoginForm from 'components/LoginForm';
 // import RegisterForm from 'components/RegisterForm';
 const RegisterForm = lazy(() => import('components/RegisterForm'));
+const Home = lazy(() => import('components/Home'));
 export default function App() {
   // console.log();
   return (
@@ -17,6 +18,15 @@ export default function App() {
       <AppBar />
       <Suspense fallback={<Loader />}>
         <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <h1>Register</h1>
+                <Home />
+              </>
+            }
+          />
           <Route
             path="register"
             element={
@@ -39,12 +49,12 @@ export default function App() {
             path="contacts"
             element={
               <>
-                <h1>Contacts</h1>
                 <ContactList />
                 {/* <Filter /> */}
               </>
             }
           />
+          <Route path="*" element={<Navigate to="register" replace />} />
         </Routes>
       </Suspense>
     </Container>

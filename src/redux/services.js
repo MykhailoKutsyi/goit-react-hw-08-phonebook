@@ -28,7 +28,7 @@ export const contactsApi = createApi({
     baseUrl: 'https://connections-api.herokuapp.com/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      console.log(token);
+      // console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
@@ -40,7 +40,20 @@ export const contactsApi = createApi({
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => `contacts`,
+      method: 'GET',
       providesTags: ['contacts'],
+    }),
+    // getCurrentUser: builder.query({
+    //   query: () => `/users/current`,
+    //   method: 'GET',
+    //   // invalidatesTags: ['contacts'],
+    // }),
+    getCurrentUser: builder.mutation({
+      query: () => ({
+        url: `/users/current`,
+        method: 'GET',
+      }),
+      invalidatesTags: ['contacts'],
     }),
     addContact: builder.mutation({
       query: contactContent => ({
@@ -64,7 +77,14 @@ export const contactsApi = createApi({
         method: 'POST',
         body: contactContent,
       }),
-      invalidatesTags: ['contacts'],
+      // invalidatesTags: ['contacts'],
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        url: `users/logout`,
+        method: 'POST',
+      }),
+      // invalidatesTags: ['contacts'],
     }),
     deleteContact: builder.mutation({
       query: contactId => ({
@@ -78,10 +98,12 @@ export const contactsApi = createApi({
 
 export const {
   useGetContactsQuery,
+  useGetCurrentUserMutation,
   useAddContactMutation,
   useDeleteContactMutation,
   useRegisterMutation,
   useLoginMutation,
+  useLogoutMutation,
 } = contactsApi;
 
 // export function Loginization(params) {
