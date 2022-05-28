@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
   getFilter,
   getFilteredContacts,
-  // getIsLoggedIn,
+  getIsLoggedIn,
 } from '../../redux/selectors';
 import { useGetContactsQuery, useAddContactMutation } from 'redux/services';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -14,11 +14,15 @@ import ContactsItem from 'components/ContactsItem';
 import s from './Contacts.module.css';
 
 export default function Contacts() {
-  const { data } = useGetContactsQuery();
+  const isLoggedIn = useSelector(getIsLoggedIn);
+
+  const { data, isLoading } = useGetContactsQuery({
+    refetchOnMountOrArgChange: isLoggedIn,
+  });
+  console.log(data);
+  console.log(isLoading);
+
   const filter = useSelector(getFilter);
-  // console.log(filter);
-  // const token = useSelector(getToken);
-  // console.log('token', token);
   const contacts = getFilteredContacts(filter, data);
 
   //--------------------------------

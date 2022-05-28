@@ -38,18 +38,20 @@ export const contactsApi = createApi({
   }),
   tagTypes: ['contacts'],
   endpoints: builder => ({
-    getContacts: builder.query({
-      query: () => `contacts`,
-      method: 'GET',
-      providesTags: ['contacts'],
-    }),
     getCurrentUser: builder.mutation({
       query: () => ({
         url: `/users/current`,
-        method: 'GET',
       }),
+      providesTags: ['contacts'],
+
       // invalidatesTags: ['contacts'],
     }),
+    getContacts: builder.query({
+      query: () => `contacts`,
+      keepUnusedDataFor: 3,
+      invalidatesTags: ['contacts'],
+    }),
+
     addContact: builder.mutation({
       query: contactContent => ({
         url: `contacts`,
