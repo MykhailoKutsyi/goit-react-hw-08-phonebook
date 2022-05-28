@@ -5,9 +5,9 @@ import { FaUserAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 // import PropTypes from 'prop-types';
-import s from './ContactListItem.module.css';
+import s from './ContactsItem.module.css';
 
-const ContactListItem = ({ id, name, number }) => {
+const ContactsItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const removeContact = () => {
     deleteContact(id);
@@ -40,11 +40,11 @@ const ContactListItem = ({ id, name, number }) => {
   );
 };
 
-ContactListItem.propTypes = {
+ContactsItem.propTypes = {
   // createdAt: PropTypes.string.isRequired,
   // id: PropTypes.string.isRequired,
   // name: PropTypes.string.isRequired,
   // phone: PropTypes.string.isRequired,
 };
 
-export default ContactListItem;
+export default ContactsItem;

@@ -18,7 +18,7 @@ export default function ContactForm() {
   const [addRegister] = useRegisterMutation();
   // const [addRegister] = useRegister();
   const state = useSelector(getState);
-  console.log(state);
+  // console.log(state);
   // const { data: contacts } = useGetContactsQuery();
   // console.log('addRegister', addRegister);
   // console.log(useRegisterMutation());
@@ -79,46 +79,50 @@ export default function ContactForm() {
   //   setStatus('rejected');
   // }
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name
-        <input
-          type="text"
-          name="name"
-          value={params.name}
-          onChange={handleChange}
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          // required
-        />
-      </label>
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          value={params.email}
-          onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          // type="tel"
-          name="password"
-          value={params.password}
-          onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label>
-      <button type="submit" className={s.submitButton}>
-        Registration
-      </button>
-    </form>
+    <>
+      <h1>Register</h1>
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            type="text"
+            name="name"
+            value={params.name}
+            onChange={handleChange}
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            // required
+          />
+        </label>
+        <label>
+          Email
+          <input
+            type="email"
+            name="email"
+            value={params.email}
+            onChange={handleChange}
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </label>
+        <label>
+          Password
+          <input
+            // type="tel"
+            name="password"
+            value={params.password}
+            onChange={handleChange}
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </label>
+        <button type="submit" className={s.submitButton}>
+          Registration
+        </button>
+      </form>
+    </>
   );
 }

@@ -43,17 +43,12 @@ export const contactsApi = createApi({
       method: 'GET',
       providesTags: ['contacts'],
     }),
-    // getCurrentUser: builder.query({
-    //   query: () => `/users/current`,
-    //   method: 'GET',
-    //   // invalidatesTags: ['contacts'],
-    // }),
     getCurrentUser: builder.mutation({
       query: () => ({
         url: `/users/current`,
         method: 'GET',
       }),
-      invalidatesTags: ['contacts'],
+      // invalidatesTags: ['contacts'],
     }),
     addContact: builder.mutation({
       query: contactContent => ({
@@ -69,7 +64,7 @@ export const contactsApi = createApi({
         method: 'POST',
         body: contactContent,
       }),
-      invalidatesTags: ['contacts'],
+      // invalidatesTags: ['contacts'],
     }),
     login: builder.mutation({
       query: contactContent => ({

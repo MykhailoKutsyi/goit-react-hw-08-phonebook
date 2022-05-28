@@ -67,34 +67,38 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          value={params.email}
-          onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          // type="tel"
-          name="password"
-          value={params.password}
-          onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label>
-      <button type="submit" className={s.submitButton}>
-        Login
-      </button>
-    </form>
+    <>
+      <h1>Login</h1>
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email
+          <input
+            type="email"
+            name="email"
+            value={params.email}
+            onChange={handleChange}
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </label>
+        <label>
+          Password
+          <input
+            // type="tel"
+            name="password"
+            value={params.password}
+            onChange={handleChange}
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </label>
+        <button type="submit" className={s.submitButton}>
+          Login
+        </button>
+      </form>
+    </>
   );
 }
