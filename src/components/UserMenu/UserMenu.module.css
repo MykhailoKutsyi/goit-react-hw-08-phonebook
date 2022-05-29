@@ -1,8 +1,11 @@
-.header {
+.container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  min-height: 80px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #2a363b;
+}
+.avatar {
+  margin-right: 4;
+}
+.name {
+  font-weight: 700;
+  margin-right: 12px;
 }

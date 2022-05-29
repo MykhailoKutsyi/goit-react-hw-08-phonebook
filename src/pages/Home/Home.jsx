@@ -1,4 +1,4 @@
-// import { useLogoutMutation } from 'redux/services';
+// import { useLogOutMutation } from 'redux/services';
 // import { useSelector } from 'react-redux';
 // import { getUsername } from 'redux/selectors';
 // import s from './Home.module.css';

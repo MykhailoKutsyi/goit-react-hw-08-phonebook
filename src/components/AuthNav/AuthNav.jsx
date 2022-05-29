@@ -6,16 +6,16 @@ export default function AuthNav() {
   return (
     <div>
       <NavLink
-        to="register"
+        to="signUp"
         className={navData => (navData.isActive ? s.activeLink : s.link)}
       >
-        Registration
+        Sign Up
       </NavLink>
       <NavLink
-        to="login"
+        to="logIn"
         className={navData => (navData.isActive ? s.activeLink : s.link)}
       >
-        Login
+        Log In
       </NavLink>
     </div>
   );

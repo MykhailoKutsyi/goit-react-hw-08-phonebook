@@ -1,11 +1,10 @@
-import { useDeleteContactMutation } from '../../redux/services';
-import Loader from 'components/Loader';
+import { useDeleteContactMutation } from 'redux/services';
 
-import { FaUserAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
+import { FaUserAlt, FaPhoneAlt } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-// import PropTypes from 'prop-types';
-import s from './ContactsItem.module.css';
+import Loader from 'components/Loader';
+import PropTypes from 'prop-types';
+import s from './Contacts.module.css';
 
 const ContactsItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
@@ -21,9 +20,6 @@ const ContactsItem = ({ id, name, number }) => {
         </p>
         <p className={s.text}>
           <FaPhoneAlt size={14} /> {number}
-        </p>
-        <p className={s.text}>
-          <FaClock size={14} /> {id}
         </p>
       </div>
 
@@ -41,10 +37,9 @@ const ContactsItem = ({ id, name, number }) => {
 };
 
 ContactsItem.propTypes = {
-  // createdAt: PropTypes.string.isRequired,
-  // id: PropTypes.string.isRequired,
-  // name: PropTypes.string.isRequired,
-  // phone: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default ContactsItem;

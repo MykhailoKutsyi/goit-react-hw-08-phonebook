@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import Container from './components/Container';
 import AppBar from './components/AppBar';
@@ -8,72 +8,79 @@ import Loader from './components/Loader';
 import { PublicRoute, PrivateRoute, CustomRoute } from 'components/CustomRoute';
 
 import { useGetCurrentUserMutation } from 'redux/services';
-import { getIsLoggedIn, getToken } from 'redux/selectors';
+// import { getIsLoggedIn, getToken } from 'redux/selectors';
 
-const Home = lazy(() => import('components/Home'));
-const RegisterForm = lazy(() => import('components/RegisterForm'));
-const LoginForm = lazy(() => import('components/LoginForm'));
-const Contacts = lazy(() => import('components/Contacts'));
+const Home = lazy(() => import('pages/Home'));
+const SignUp = lazy(() => import('pages/SignUp'));
+const LogIn = lazy(() => import('pages/LogIn'));
+const Contacts = lazy(() => import('pages/Contacts'));
 
 export default function App() {
-  const [fetchCurrentUser] = useGetCurrentUserMutation();
-  const token = useSelector(getToken);
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  // const isLoggedIn = useSelector(getIsLoggedIn);
+  // const token = useSelector(getToken);
+  const [fetchCurrentUser, { isSuccess, isError }] =
+    useGetCurrentUserMutation();
+  // {
+  // refetchOnMountOrArgChange: {
+  //   skip: !isLoggedIn,
+  // },
+  // }
+
+  // Закоментований код вирішує проблему запуску запиту current, коли не потрібно, але зручно використати isSuccess || isError, щоб не мигав контент.
 
   useEffect(() => {
-    if (!isLoggedIn && token !== null) {
-      console.log('fetching current user');
-      fetchCurrentUser();
-    }
-  }, [fetchCurrentUser, isLoggedIn, token]);
+    // if (token) {
+    console.log('fetching current user');
+    fetchCurrentUser();
+    // }
+  }, [fetchCurrentUser]);
 
-  // console.log(isSuccess);
   return (
-    // (isSuccess || isError) && (
-    <Container>
-      <AppBar />
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <Home />
-              </PublicRoute>
-            }
-          />
+    (isSuccess || isError) && (
+      <Container>
+        <AppBar />
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <Home />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="register"
-            element={
-              <PublicRoute restricted>
-                <RegisterForm />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="signUp"
+              element={
+                <PublicRoute restricted>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="login"
-            element={
-              <PublicRoute restricted>
-                <LoginForm />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="logIn"
+              element={
+                <PublicRoute restricted>
+                  <LogIn />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute restricted>
-                <Contacts />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute restricted>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path="*" element={<CustomRoute restricted />} />
-        </Routes>
-      </Suspense>
-    </Container>
+            <Route path="*" element={<CustomRoute restricted />} />
+          </Routes>
+        </Suspense>
+      </Container>
+    )
   );
-  // );
 }

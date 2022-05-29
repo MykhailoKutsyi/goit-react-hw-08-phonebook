@@ -1,35 +1,22 @@
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import {
-  getFilter,
-  getFilteredContacts,
-  getIsLoggedIn,
-} from '../../redux/selectors';
 import { useGetContactsQuery, useAddContactMutation } from 'redux/services';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { getFilter, getFilteredContacts } from 'redux/selectors';
 
-import Filter from '../Filter';
-import ContactsItem from 'components/ContactsItem';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import ContactsItem from 'pages/Contacts/ContactsItem';
+import Filter from 'components/Filter';
+import Loader from 'components/Loader';
 import s from './Contacts.module.css';
 
 export default function Contacts() {
-  const isLoggedIn = useSelector(getIsLoggedIn);
-
-  const { data, isLoading } = useGetContactsQuery({
-    refetchOnMountOrArgChange: isLoggedIn,
-  });
-  console.log(data);
-  console.log(isLoading);
-
-  const filter = useSelector(getFilter);
-  const contacts = getFilteredContacts(filter, data);
-
-  //--------------------------------
-
   const [params, setParams] = useState({ name: '', number: '' });
 
-  const [addContact] = useAddContactMutation();
+  const { data, isLoading } = useGetContactsQuery();
+  const [addContact, { isLoading: isAdding }] = useAddContactMutation();
+  const filter = useSelector(getFilter);
+  const contacts = getFilteredContacts(filter, data);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -38,7 +25,11 @@ export default function Contacts() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    newContact();
+    contacts.some(contact => contact.name === params.name)
+      ? Notify.failure(`Contact ${params.name} already exists`)
+      : contacts.some(contact => contact.number === params.number)
+      ? Notify.failure(`Contact with number: ${params.number} already exists`)
+      : newContact();
   }
 
   const newContact = () => {
@@ -52,7 +43,7 @@ export default function Contacts() {
   };
   return (
     <>
-      <h1>Contacts</h1>
+      <h2>Create new contact</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name
@@ -78,17 +69,28 @@ export default function Contacts() {
             required
           />
         </label>
-        <button type="submit" className={s.submitButton}>
-          ADD CONTACT, bitch
+        <button type="submit" className={s.submitButton} disabled={isAdding}>
+          {isAdding ? 'Adding...' : 'Add to contacts'}
+          {isAdding && <Loader />}
         </button>
       </form>
-      <Filter />
-      <ul className={s.list}>
-        {contacts &&
-          contacts.map(({ id, name, number }) => (
-            <ContactsItem key={id} id={id} name={name} number={number} />
-          ))}
-      </ul>
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {data.length === 0 ? <h1>Contacts list is empty</h1> : <Filter />}
+          <ul className={s.list}>
+            {contacts?.length === 0 ? (
+              <h4>No contacts were found matching</h4>
+            ) : (
+              contacts.map(({ id, name, number }) => (
+                <ContactsItem key={id} id={id} name={name} number={number} />
+              ))
+            )}
+          </ul>
+        </>
+      )}
     </>
   );
 }

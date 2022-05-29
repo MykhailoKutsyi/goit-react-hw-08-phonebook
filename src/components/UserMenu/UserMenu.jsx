@@ -1,36 +1,25 @@
-import { useLogoutMutation } from 'redux/services';
+import { useLogOutMutation } from 'redux/services';
 import { useSelector } from 'react-redux';
 import { getUsername } from 'redux/selectors';
-// import s from './UserMenu.module.css';
-
-const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import Loader from 'components/Loader';
+import s from './UserMenu.module.css';
 
 export default function UserMenu() {
   const name = useSelector(getUsername);
-  const [logout] = useLogoutMutation();
+  const [logOut, { isLoading }] = useLogOutMutation();
+
   return (
-    <div style={styles.container}>
+    <div className={s.container}>
       <img
         src={'https://cdn-icons-png.flaticon.com/512/2922/2922506.png'}
         alt=""
         width="32"
-        style={styles.avatar}
+        className={s.avatar}
       />
-      <span style={styles.name}>Hello, {name}</span>
-      <button type="button" onClick={() => logout()}>
-        Logout
+      <span className={s.name}>Hello, {name}</span>
+      <button type="button" onClick={() => logOut()} disabled={isLoading}>
+        {isLoading && <Loader />}
+        {isLoading ? 'Log outing...' : 'Log out'}
       </button>
     </div>
   );

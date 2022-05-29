@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import contactsApi from './auth-operations';
 import { contactsApi } from './services';
 
 const initialState = {
@@ -13,7 +12,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addMatcher(
-      contactsApi.endpoints.register.matchFulfilled,
+      contactsApi.endpoints.signUp.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
@@ -21,7 +20,7 @@ const authSlice = createSlice({
       }
     );
     builder.addMatcher(
-      contactsApi.endpoints.login.matchFulfilled,
+      contactsApi.endpoints.logIn.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
@@ -29,7 +28,7 @@ const authSlice = createSlice({
       }
     );
     builder.addMatcher(
-      contactsApi.endpoints.logout.matchFulfilled,
+      contactsApi.endpoints.logOut.matchFulfilled,
       (state, _) => {
         state.user = { name: null, email: null };
         state.token = null;
