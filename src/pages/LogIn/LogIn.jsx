@@ -39,6 +39,7 @@ export default function LogIn() {
           type="email"
           name="email"
           value={params.email}
+          placeholder="email@address.com"
           onChange={handleChange}
           required
         />
@@ -50,6 +51,7 @@ export default function LogIn() {
           name="password"
           value={params.password}
           onChange={handleChange}
+          placeholder="Must have at least 7 characters"
           pattern=".{7,}"
           title="At least 7 characters in length"
           required

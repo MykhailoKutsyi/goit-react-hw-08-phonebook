@@ -32,15 +32,20 @@ export default function Contacts() {
       : newContact();
   }
 
-  const newContact = () => {
-    addContact(params);
-    Notify.info(`Added ${params.name} - ok, maybe`);
-    reset();
-  };
+  async function newContact() {
+    const { data } = await addContact(params);
+    if (data?.id) {
+      Notify.info(`Contact ${params.name} success added to phone book`);
+      reset();
+    } else {
+      Notify.warning(`Wrong Credentials. Check entered values.`);
+    }
+  }
 
   const reset = () => {
     setParams({ name: '', number: '' });
   };
+
   return (
     <>
       <h2>Create new contact</h2>
@@ -52,8 +57,9 @@ export default function Contacts() {
             name="name"
             value={params.name}
             onChange={handleChange}
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            placeholder="Adrian"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
         </label>
@@ -64,14 +70,15 @@ export default function Contacts() {
             name="number"
             value={params.number}
             onChange={handleChange}
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            placeholder="+380951001010"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example, +38-095-000-00-00 or 380951001010"
             required
           />
         </label>
         <button type="submit" className={s.submitButton} disabled={isAdding}>
           {isAdding ? 'Adding...' : 'Add to contacts'}
-          {isAdding && <Loader />}
+          {isAdding && <Loader className="Loader" />}
         </button>
       </form>
 
@@ -79,16 +86,27 @@ export default function Contacts() {
         <Loader />
       ) : (
         <>
-          {data.length === 0 ? <h1>Contacts list is empty</h1> : <Filter />}
-          <ul className={s.list}>
-            {contacts?.length === 0 ? (
-              <h4>No contacts were found matching</h4>
-            ) : (
-              contacts.map(({ id, name, number }) => (
-                <ContactsItem key={id} id={id} name={name} number={number} />
-              ))
-            )}
-          </ul>
+          {data.length === 0 ? (
+            <h1>Contacts list is empty</h1>
+          ) : (
+            <>
+              <Filter />
+              <ul className={s.list}>
+                {contacts?.length === 0 ? (
+                  <h4>No contacts were found matching</h4>
+                ) : (
+                  contacts.map(({ id, name, number }) => (
+                    <ContactsItem
+                      key={id}
+                      id={id}
+                      name={name}
+                      number={number}
+                    />
+                  ))
+                )}
+              </ul>
+            </>
+          )}
         </>
       )}
     </>

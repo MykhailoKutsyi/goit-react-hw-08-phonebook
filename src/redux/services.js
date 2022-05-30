@@ -41,7 +41,8 @@ export const contactsApi = createApi({
       query: () => ({
         url: `/users/current`,
       }),
-      providesTags: ['auth'],
+      // providesTags: ['auth'],
+      invalidatesTags: ['auth'],
     }),
     signUp: builder.mutation({
       query: contactContent => ({

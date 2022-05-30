@@ -25,14 +25,3 @@
 .text {
   padding: 6px;
 }
-
-.deleteButton {
-  width: 200px;
-  height: 50px;
-}
-
-.Loader {
-  position: absolute;
-
-  left: 850px;
-}

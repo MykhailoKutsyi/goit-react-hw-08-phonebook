@@ -40,6 +40,7 @@ export default function SignUp() {
           name="name"
           value={params.name}
           onChange={handleChange}
+          placeholder="Adrian"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -52,6 +53,7 @@ export default function SignUp() {
           name="email"
           value={params.email}
           onChange={handleChange}
+          placeholder="email@address.com"
           required
         />
       </label>
@@ -62,6 +64,7 @@ export default function SignUp() {
           name="password"
           value={params.password}
           onChange={handleChange}
+          placeholder="Must have at least 7 characters"
           pattern=".{7,}"
           title="At least 7 characters in length"
           required
