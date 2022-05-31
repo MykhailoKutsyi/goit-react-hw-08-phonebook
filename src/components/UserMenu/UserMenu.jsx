@@ -2,7 +2,6 @@ import { useLogOutMutation } from 'redux/services';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsername } from 'redux/selectors';
 import { changeFilter } from 'redux/actions';
-import Loader from 'components/Loader';
 import s from './UserMenu.module.css';
 
 export default function UserMenu() {
@@ -25,7 +24,6 @@ export default function UserMenu() {
       />
       <span className={s.name}>Hello, {name}</span>
       <button type="button" onClick={() => exit()} disabled={isLoading}>
-        {isLoading && <Loader />}
         {isLoading ? 'Log outing...' : 'Log out'}
       </button>
     </div>

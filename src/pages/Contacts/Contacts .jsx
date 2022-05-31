@@ -48,8 +48,8 @@ export default function Contacts() {
 
   return (
     <>
-      <h2>Create new contact</h2>
       <form onSubmit={handleSubmit}>
+        <h2 className="title">Create new contact</h2>
         <label>
           Name
           <input
@@ -78,7 +78,7 @@ export default function Contacts() {
         </label>
         <button type="submit" className={s.submitButton} disabled={isAdding}>
           {isAdding ? 'Adding...' : 'Add to contacts'}
-          {isAdding && <Loader className="Loader" />}
+          {/* {isAdding && <Loader className="Loader" />} */}
         </button>
       </form>
 

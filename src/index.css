@@ -1,22 +1,64 @@
 @import-normalize; /* bring in normalize.css styles */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background: #fff;
+  line-height: 1.33;
+  color: #000;
   background: #007fd4;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+  border: transparent;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+label,
+input,
+textarea {
+  display: block;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 #root {
-  width: 800px;
+  width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
   margin-right: auto;
@@ -26,16 +68,6 @@ code {
   border-radius: 6px;
 }
 
-li {
-  list-style: none;
-}
-ul,
-p,
-a,
-h2 {
-  margin: 0;
-  padding: 0;
-}
 .Loader {
   width: 80px;
   margin-left: auto;
@@ -44,5 +76,74 @@ h2 {
 
 button {
   width: 200px;
-  height: 50px;
+  min-height: 50px;
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 1.6rem;
+  /* text-align: center; */
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  margin: 0 10%;
+}
+
+button:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0px 2px 15px;
+  transition-duration: 0.2s;
+}
+@media (min-width: 768px) {
+  button {
+    padding: 0 2.6rem;
+  }
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+input:hover,
+input:focus,
+input:checked {
+  border-color: #007fd4;
+}
+
+form {
+  background: white;
+  border: 0 none;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 18px;
 }

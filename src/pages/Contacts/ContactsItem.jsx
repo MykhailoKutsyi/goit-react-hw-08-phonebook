@@ -2,7 +2,6 @@ import { useDeleteContactMutation } from 'redux/services';
 
 import { FaUserAlt, FaPhoneAlt } from 'react-icons/fa';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import Loader from 'components/Loader';
 import PropTypes from 'prop-types';
 import s from './Contacts.module.css';
 
@@ -30,7 +29,6 @@ const ContactsItem = ({ id, name, number }) => {
         disabled={isLoading}
       >
         {isLoading ? 'Deleting...' : 'Delete'}
-        {isLoading && <Loader />}
       </button>
     </li>
   );

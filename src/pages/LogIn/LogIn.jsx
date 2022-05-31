@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useLogInMutation } from 'redux/services';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import Loader from 'components/Loader';
-import s from './LogIn.module.css';
 
 export default function LogIn() {
   const [params, setParams] = useState({ email: '', password: '' });
@@ -51,16 +49,22 @@ export default function LogIn() {
           name="password"
           value={params.password}
           onChange={handleChange}
-          placeholder="Must have at least 7 characters"
           pattern=".{7,}"
-          title="At least 7 characters in length"
+          title="At least 7 characters in length. Wasn't your password \'password123\'? 🤫"
           required
         />
       </label>
-      <button type="submit" className={s.submitButton} disabled={isLoading}>
-        {isLoading && <Loader />}
-        {isLoading ? 'Log ining...' : 'Log in'}
-      </button>
+      <div className="mb-2">
+        <button
+          variant="success"
+          type="submit"
+          size="lg"
+          active
+          disabled={isLoading}
+        >
+          {isLoading ? 'Log ining...' : 'Log In'}
+        </button>
+      </div>
     </form>
   );
 }
