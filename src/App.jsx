@@ -10,6 +10,7 @@ import { PublicRoute, PrivateRoute, CustomRoute } from 'components/CustomRoute';
 
 import { useGetCurrentUserMutation } from 'redux/services';
 import { getToken } from 'redux/selectors';
+import Footer from 'components/Footer';
 
 const Home = lazy(() => import('pages/Home'));
 const SignUp = lazy(() => import('pages/SignUp'));
@@ -44,50 +45,53 @@ export default function App() {
   // console.log(showContent);
   return (
     (showContent || isSuccess || isError) && (
-      <Container>
+      <>
         <AppBar />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute>
-                  <Home />
-                </PublicRoute>
-              }
-            />
+        <Container>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <PublicRoute>
+                    <Home />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="signUp"
-              element={
-                <PublicRoute restricted>
-                  <SignUp />
-                </PublicRoute>
-              }
-            />
+              <Route
+                path="signUp"
+                element={
+                  <PublicRoute restricted>
+                    <SignUp />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="logIn"
-              element={
-                <PublicRoute restricted>
-                  <LogIn />
-                </PublicRoute>
-              }
-            />
+              <Route
+                path="logIn"
+                element={
+                  <PublicRoute restricted>
+                    <LogIn />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute restricted>
-                  <Contacts />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="contacts"
+                element={
+                  <PrivateRoute restricted>
+                    <Contacts />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route path="*" element={<CustomRoute restricted />} />
-          </Routes>
-        </Suspense>
-      </Container>
+              <Route path="*" element={<CustomRoute restricted />} />
+            </Routes>
+          </Suspense>
+        </Container>
+        <Footer />
+      </>
     )
   );
 }

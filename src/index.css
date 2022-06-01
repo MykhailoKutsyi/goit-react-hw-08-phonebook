@@ -13,7 +13,6 @@ body {
   background: #fff;
   line-height: 1.33;
   color: #000;
-  background: #007fd4;
 }
 
 h1,
@@ -54,18 +53,21 @@ textarea {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
   width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
   margin-right: auto;
   margin-left: auto;
-  background-color: white;
+  background-color: #8fc9f0;
   padding: 15px;
   border-radius: 6px;
+  /* min-height: 600px; */
+  min-height: calc(85vh);
 }
 
 .Loader {
@@ -91,15 +93,16 @@ button {
   font-size: 16px;
   font-weight: 500;
   padding: 0 1.6rem;
-  /* text-align: center; */
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
   transition: all 0.5s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-
-  margin: 0 10%;
+  margin-right: auto;
+  margin-left: auto;
+  /* margin: 0 10%; */
 }
+/* transition: 2250ms cubic-bezier(0.8, 0.4, 0.3, 0.9) all; */
 
 button:hover {
   box-shadow: rgba(80, 63, 205, 0.5) 0px 2px 15px;
@@ -117,7 +120,7 @@ label {
 }
 
 input {
-  width: 250px;
+  width: 220px;
   height: 30px;
   border-radius: 4px;
   margin-bottom: 15px;
@@ -134,16 +137,46 @@ input:checked {
 }
 
 form {
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
   background: white;
   border: 0 none;
   border-radius: 5px;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
   padding: 20px 30px;
   box-sizing: border-box;
-  width: 50%;
+  /* width: 50%; */
 }
 
 .title {
+  text-align: center;
   margin-bottom: 10px;
   font-size: 18px;
+}
+
+.title__home {
+  font-weight: 500;
+  font-size: 20px;
+  /* text-align: center; */
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* text-align: center; */
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.margin {
+  margin-left: 15px;
+  margin-bottom: 15px;
 }

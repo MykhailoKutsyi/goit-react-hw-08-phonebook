@@ -55,13 +55,7 @@ export default function LogIn() {
         />
       </label>
       <div className="mb-2">
-        <button
-          variant="success"
-          type="submit"
-          size="lg"
-          active
-          disabled={isLoading}
-        >
+        <button variant="success" type="submit" size="lg" disabled={isLoading}>
           {isLoading ? 'Log ining...' : 'Log In'}
         </button>
       </div>

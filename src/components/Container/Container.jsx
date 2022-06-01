@@ -8,5 +8,5 @@ const Container = ({ children }) => (
 export default Container;
 
 Container.propTypes = {
-  children: PropTypes.PropTypes.arrayOf(PropTypes.node).isRequired,
+  children: PropTypes.object.isRequired,
 };

@@ -17,9 +17,11 @@ export default function UserMenu() {
   return (
     <div className={s.container}>
       <img
-        src={'https://cdn-icons-png.flaticon.com/512/2922/2922506.png'}
+        src={
+          'https://img.icons8.com/stickers/100/undefined/gender-neutral-user.png'
+        }
         alt=""
-        width="32"
+        width="40"
         className={s.avatar}
       />
       <span className={s.name}>Hello, {name}</span>
